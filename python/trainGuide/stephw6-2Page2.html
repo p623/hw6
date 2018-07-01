@@ -3,13 +3,14 @@
         <meta charset="utf-8">
         <title>乗り換え案内結果</title>
     </head>
-    <body>
-        <h5>乗り換え案内の結果は以下のようになります</h5>
-        <p>--------------------------------------------</p>
+    <body> 
+        <h4>乗り換え案内の結果を表示します</h4>
+        <p>----------------------------------------------</p>
         <div class=output>
             {% for station in graph2 %}
-            <p>{{station["print"]}}</p>
+                <p>{{station["print"]}}</p>
             {% endfor %}
-        </div>   
+        </div> 
+
     </body>
 </html>

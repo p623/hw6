@@ -7,35 +7,35 @@ import json, codecs
 import jinja2
 import cgi
 
-fromToData=[]
 f=codecs.open("aliceData.json","r","utf-8")
 trainData=json.load(f)
-
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class BaseHandler(webapp2.RequestHandler):
-    def render(self, html, values={"graph": trainData, "graph2":fromToData}):
+class MainHandler(webapp2.RequestHandler):
+    def render(self, html, values={"graph": trainData}):
         template = JINJA_ENVIRONMENT.get_template(html)
         self.response.write(template.render(values))
-
-class MainHandler(BaseHandler):
     def get(self):
         self.render("stephw6-2Page1.html")
 
-class SabHandler(BaseHandler):
+class SabHandler(webapp2.RequestHandler):
+    def render(self, html, values={"graph": trainData}):
+        template = JINJA_ENVIRONMENT.get_template(html)
+        self.response.write(template.render(values))
+
     def get(self):
-        self.render("stephw6-2Page2.html")
         fromSta=cgi.escape(self.request.get("from"))
         toSta=cgi.escape(self.request.get("to"))
         trainLine=["Mimsy Line","Burrow Grove Express","Chesire","Queens Line", "Caterpillar Way"]
-        fromLine=[]
+        fromToData=[]
         fromTrain=[]
         toLine=[]
         toTrain=[]
+        fromLine=[]
         length=0
         for dict in trainData:
             length+=1
@@ -52,15 +52,17 @@ class SabHandler(BaseHandler):
             else:
                 toLine.append(0)
 
+        print(fromTrain)
+        print(toTrain)
+
         i=0
         while i<length:
             if fromLine[i] == toLine[i] and fromLine[i]==1:
                 fromToData.append({"print":"From Station: "+fromSta})
                 fromToData.append({"print":"Train: "+trainLine[i]})
                 fromToData.append({"print":"To Station: "+toSta})
-                fromToData.append({"print":"--------------------------------------"})
+                fromToData.append({"print":"--------------------------------------"})     
             i+=1
-        print(fromToData)
 
         if fromToData==[]:
             for everyLine in fromTrain:
@@ -76,7 +78,6 @@ class SabHandler(BaseHandler):
                             fromToData.append({"print":"Train2: "+trainLine[index2]})
                             fromToData.append({"print":"To Station: "+toSta})
                             fromToData.append({"print":"--------------------------------------"})
-                            print(fromToData)
         
         if fromToData==[]:
             for everyLine in fromTrain:
@@ -103,8 +104,9 @@ class SabHandler(BaseHandler):
                                         fromToData.append({"print":"To Station: "+toSta})
                                         fromToData.append({"print":"--------------------------------------"})
                                         break
-        self.render("stephw6-2Page2.html")
-
+        print(fromToData)
+        self.render("stephw6-2Page2.html",values={"graph2": fromToData})
+        
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
