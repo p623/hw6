@@ -31,8 +31,6 @@ class SabHandler(BaseHandler):
         self.render("stephw6-2Page2.html")
         fromSta=cgi.escape(self.request.get("from"))
         toSta=cgi.escape(self.request.get("to"))
-        print(fromSta)
-        print(toSta)
         trainLine=["Mimsy Line","Burrow Grove Express","Chesire","Queens Line", "Caterpillar Way"]
         fromLine=[]
         fromTrain=[]
@@ -54,10 +52,6 @@ class SabHandler(BaseHandler):
             else:
                 toLine.append(0)
 
-        print(fromLine)
-        print(fromTrain)
-        print(toLine)
-        print(toTrain)
         i=0
         while i<length:
             if fromLine[i] == toLine[i] and fromLine[i]==1:
@@ -87,8 +81,8 @@ class SabHandler(BaseHandler):
         if fromToData==[]:
             for everyLine in fromTrain:
                 index=trainLine.index(everyLine)
-                stationList=trainData[index].get("Station")
-                for station in stationList:
+                stationList2=trainData[index].get("Stations")
+                for station in stationList2:
                     for train in trainLine:
                         if train==everyLine:
                             continue
@@ -107,6 +101,7 @@ class SabHandler(BaseHandler):
                                         fromToData.append({"print":"Station2: "+everyStation})
                                         fromToData.append({"print":"Train3: "+trainLine[index4]})
                                         fromToData.append({"print":"To Station: "+toSta})
+                                        fromToData.append({"print":"--------------------------------------"})
                                         break
 
 
