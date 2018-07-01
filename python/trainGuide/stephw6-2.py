@@ -31,6 +31,8 @@ class SabHandler(BaseHandler):
         self.render("stephw6-2Page2.html")
         fromSta=cgi.escape(self.request.get("from"))
         toSta=cgi.escape(self.request.get("to"))
+        print(fromSta)
+        print(toSta)
         trainLine=["Mimsy Line","Burrow Grove Express","Chesire","Queens Line", "Caterpillar Way"]
         fromLine=[]
         fromTrain=[]
@@ -63,8 +65,8 @@ class SabHandler(BaseHandler):
                 fromToData.append({"print":"Train: "+trainLine[i]})
                 fromToData.append({"print":"To Station: "+toSta})
                 fromToData.append({"print":"--------------------------------------"})
-                print(fromToData)
             i+=1
+        print(fromToData)
 
         if fromToData==[]:
             for everyLine in fromTrain:
@@ -81,7 +83,33 @@ class SabHandler(BaseHandler):
                             fromToData.append({"print":"To Station: "+toSta})
                             fromToData.append({"print":"--------------------------------------"})
                             print(fromToData)
-         
+        
+        if fromToData==[]:
+            for everyLine in fromTrain:
+                index=trainLine.index(everyLine)
+                stationList=trainData[index].get("Station")
+                for station in stationList:
+                    for train in trainLine:
+                        if train==everyLine:
+                            continue
+                        index3=trainLine.index(train)
+                        if station in trainData[index3].get("Stations"):
+                            for everyStation in trainData[index3].get("Stations"):
+                                for everyLine2 in toTrain:
+                                    if everyLine2==everyLine:
+                                        continue
+                                    index4=trainLine.index(everyLine2)
+                                    if everyStation in trainData[index4].get("Stations"):
+                                        fromToData.append({"print":"From Station: "+fromSta})
+                                        fromToData.append({"print":"Train1: "+everyLine})
+                                        fromToData.append({"print":"Station1: "+station})
+                                        fromToData.append({"print":"Train2: "+trainLine[index3]})
+                                        fromToData.append({"print":"Station2: "+everyStation})
+                                        fromToData.append({"print":"Train3: "+trainLine[index4]})
+                                        fromToData.append({"print":"To Station: "+toSta})
+                                        break
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
