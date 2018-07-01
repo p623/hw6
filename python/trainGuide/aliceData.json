@@ -1,0 +1,74 @@
+[
+    {
+        "Name": "Mimsy Line",
+        "Stations": [
+            "Seaside Beach",
+            "Mount Jub-Jub",
+            "Field of Flying Elephants",
+            "Tulgey Wood",
+            "Guarded Way",
+            "Hall of Mirrors",
+            "Rabbit Hole",
+            "Hatter House",
+            "Fungal Forest",
+            "Tulgey Wood",
+            "March Manor",
+            "Dismal Mire"
+        ]
+    },
+    {
+        "Name": "Burrow Grove Express",
+        "Stations": [
+            "Seaside Beach",
+            "Mount Jub-Jub",
+            "Field of Flying Elephants",
+            "Tulgey Wood",
+            "Fungal Forest",
+            "Hatter House",
+            "March Manor",
+            "Pool of Tears"
+        ]
+    },
+    {
+        "Name": "Chesire",
+        "Stations": [
+            "Seaside Beach",
+            "Mount Jub-Jub",
+            "White Manor",
+            "Nowhere",
+            "Woods of No Name",
+            "City of Charity"
+        ]
+    },
+    {
+        "Name": "Queens Line",
+        "Stations": [
+            "Croquet Grounds",
+            "Castle of Hearts",
+            "Courthouse",
+            "Pool of Tears",
+            "Cacus Race Grounds",
+            "Mount Jub-Jub",
+            "Eighth Square",
+            "City of Faith",
+            "Settled",
+            "Queen's Retreat"
+        ]
+    },
+    {
+        "Name": "Caterpillar Way",
+        "Stations": [
+            "Tulgey Down",
+            "Insect Forest",
+            "Woods of No Name",
+            "Hill of Surveying",
+            "City of Charity",
+            "Living Flower Maze",
+            "Looking-Glass House",
+            "Guarded Way",
+            "Tulgey Wood",
+            "Fungal Forest",
+            "Hatter House"
+        ]
+    }
+]
