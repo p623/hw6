@@ -4,8 +4,13 @@
         <title>乗り換え案内</title>
     </head>
     <body>
-         {% for line in graph %} 
+        {% for line in graph %} 
+        <p>--------------------------------------------</p>
         <p>線: {{line["Name"]}}</p>
+        <p>--------------------------------------------</p>
+            {% for station in line["Stations"] %}
+            <p>駅: {{station}}</p>
+            {% endfor %}
         {% endfor %}
         <div class="input">
             <form action="/seni">
