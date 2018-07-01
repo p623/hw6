@@ -4,9 +4,12 @@
         <title>乗り換え案内結果</title>
     </head>
     <body>
-        <p>----------------------------------------</p>
-        {% for station in graph2 %}
-        <p>{{station["print"]}}</p>
-        {% endfor %}
+        <h5>乗り換え案内の結果は以下のようになります</h5>
+        <p>--------------------------------------------</p>
+        <div class=output>
+            {% for station in graph2 %}
+            <p>{{station["print"]}}</p>
+            {% endfor %}
+        </div>   
     </body>
 </html>

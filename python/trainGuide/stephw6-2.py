@@ -103,7 +103,7 @@ class SabHandler(BaseHandler):
                                         fromToData.append({"print":"To Station: "+toSta})
                                         fromToData.append({"print":"--------------------------------------"})
                                         break
-
+        self.render("stephw6-2Page2.html")
 
 
 app = webapp2.WSGIApplication([
