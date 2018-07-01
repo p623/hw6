@@ -4,6 +4,9 @@
         <title>乗り換え案内</title>
     </head>
     <body>
+         {% for line in graph %} 
+        <p>線: {{line["Name"]}}</p>
+        {% endfor %}
         <div class="input">
             <form action="/seni">
                 <p>出発 : </p>
