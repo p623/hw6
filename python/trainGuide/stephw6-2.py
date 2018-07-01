@@ -59,17 +59,29 @@ class SabHandler(BaseHandler):
         i=0
         while i<length:
             if fromLine[i] == toLine[i] and fromLine[i]==1:
-                fromToData.append({"print":"from: "+fromSta})
-                fromToData.append({"print":"train: "+trainLine[i]})
-                fromToData.append({"print":"to: "+toSta})
+                fromToData.append({"print":"From Station: "+fromSta})
+                fromToData.append({"print":"Train: "+trainLine[i]})
+                fromToData.append({"print":"To Station: "+toSta})
                 fromToData.append({"print":"--------------------------------------"})
                 print(fromToData)
-            else:
-                if len(toTrain) >= len(fromTrain):
-                    pass
-                else:
-                    pass
             i+=1
+
+        if fromToData==[]:
+            for everyLine in fromTrain:
+                index=trainLine.index(everyLine)
+                stationList=trainData[index].get("Stations")
+                for station in stationList:
+                    for everyLine2 in toTrain:
+                        index2=trainLine.index(everyLine2)
+                        if station in trainData[index2].get("Stations"):
+                            fromToData.append({"print":"From Station: "+fromSta})
+                            fromToData.append({"print":"Train1: "+trainLine[index]})
+                            fromToData.append({"print":"Station1: "+station})
+                            fromToData.append({"print":"Train2: "+trainLine[index2]})
+                            fromToData.append({"print":"To Station: "+toSta})
+                            fromToData.append({"print":"--------------------------------------"})
+                            print(fromToData)
+         
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
